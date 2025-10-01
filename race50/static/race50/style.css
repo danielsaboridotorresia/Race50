@@ -25,10 +25,15 @@ body {
     padding: 20px;
 }
 
+/* Navigation bar on the top of the screen */
 .navbar {
     background-color: #f0f0f0;
 }
+ul, li {
+    list-style-type: none;
+}
 
+/* The inside of the page */
 .main {
     padding: 0px;
 }
