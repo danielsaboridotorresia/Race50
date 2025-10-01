@@ -25,6 +25,11 @@ body {
     padding: 20px;
 }
 
+/* The whole page except sidebar */
+.main {
+    padding: 0px;
+}
+
 /* Navigation bar on the top of the screen */
 .navbar {
     background-color: #f0f0f0;
@@ -34,6 +39,7 @@ ul, li {
 }
 
 /* The inside of the page */
-.main {
-    padding: 0px;
+.inside-body {
+    padding: 16px;
 }
+
