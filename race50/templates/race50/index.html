@@ -1,8 +1,33 @@
 {% extends "race50/layout.html" %}
+{% load static %}
 
 {% block title %}
     Race50 - Index
 {% endblock %}
 {% block body %}
-    
+    <div class="index-text-wrap">
+        <p class="index-text">
+            Karting is more than speed — it’s a battle of precision, consistency, and constant progress. Every lap tells 
+            a story, and every story has lessons hidden in the data. Race50 is built to help you uncover those lessons. 
+            With just a few clicks, you can transform raw telemetry into clear, powerful insights that reveal where you’re 
+            gaining time, where you’re losing it, and what changes will make you faster. <br>
+
+            Upload your sessions to see detailed breakdowns of laps and sectors. Compare different runs side by side to 
+            spot patterns in your driving. Discover your theoretical best lap, and understand how close you are to 
+            reaching your full potential. From highlighting your strongest corners to pointing out the small 
+            inconsistencies that cost you tenths, Race50 turns every bit of data into knowledge you can use. <br>
+
+            Karting isn’t just about being quick today — it’s about building towards tomorrow. Whether you’re preparing 
+            for your first race weekend or pushing for a championship, Race50 gives you the tools to grow as a driver. 
+            With every analysis, you’ll gain more confidence, sharpen your skills, and develop the consistency that wins 
+            races. <br>
+
+            Race50 is not just a platform — it’s your racing companion, built to guide you from one lap to the next, 
+            showing you the path toward improvement. Every upload is an opportunity, every comparison a new 
+            perspective, every session a step closer to your best. <br>
+        </p>
+    </div>
+    <div class="index-image-wrap">
+        <img class="index-image" src="{% static 'race50/images/indeximage.jpg' %}">
+    </div>
 {% endblock %}

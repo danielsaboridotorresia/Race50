@@ -41,8 +41,27 @@ ul, li {
 
 /* The inside of the page */
 .inside-body {
+    display: flex;
     padding: 16px;
 }
 
-/* Register and login */
+/* Index text */
+.index-text-wrap {
+    display: inline-block;
+}
+
+/* Index Image */
+.index-image-wrap {
+    position: absolute;
+    top: 20%;
+    right: 0;
+    padding: 16px;
+    padding-right: 32px;
+}
+
+.index-image {
+    display: flex;
+    max-width: 100%;
+    height: 300px;
+}
 
