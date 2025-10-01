@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["race50.onrender.com", "race50.render.com", "127.0.0.1", "localhost"]
 
+AUTH_USER_MODEL = "race50.User"
+
 
 # Application definition
 
