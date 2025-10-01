@@ -4,6 +4,13 @@ body {
     background-color: white;
 }
 
+/* Sidebar on the left */
+.sidebar {
+    background-color: #f0f0f0;
+    height: 100vh;
+    padding: 20px;
+}
+
 /* Logo top left */
 .logo-wrap {
   display: flex;
@@ -16,13 +23,6 @@ body {
     display: flex;
     max-width: 100%;
     height: auto;
-}
-
-/* Sidebar on the left */
-.sidebar {
-    background-color: #f0f0f0;
-    height: 100vh;
-    padding: 20px;
 }
 
 /* The whole page except sidebar */
@@ -42,4 +42,6 @@ ul, li {
 .inside-body {
     padding: 16px;
 }
+
+/* Register and login */
 
