@@ -6,8 +6,19 @@
 {% endblock %}
 {% block body %}
 {% if user.is_authenticated %}
-    <h1>This page is under construction</h1>
-    <p>Hello, {{ request.user }}</p>
+    <div class="header">
+        <div class="header-title">
+            <h2>Welcome, {{ request.user }}</h2>
+        </div>
+        <div class="header-buttons" style="width: 100%; display: table;">
+            <div class="header-buttons-sessions" style="display: table-cell;">
+                <button>All sessions</button>
+            </div>
+            <div class="header-buttons-compare" style="display: table-cell;">
+                <button>Compare Sessions</button>
+            </div>
+        </div>
+    </div>
 {% else %}
     <div class="index-article">
         <p class="index-text">Karting is more than just raw speed — it’s the art of precision, the science of consistency, and the pursuit of constant progress. Every time you get into the kart, you aren’t just driving laps; you’re writing a story of performance, a sequence of braking points, throttle applications, corner entries, and exits that add up to something greater than the stopwatch alone can show. Every lap tells a story, and within that story are hidden lessons — lessons that can make you not just faster, but smarter, calmer, and more consistent behind the wheel. Race50 exists to help you unlock those lessons.</p>
