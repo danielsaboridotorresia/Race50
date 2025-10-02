@@ -70,6 +70,23 @@ ul, li {
     text-align: center;
 }
 
+/* The three images on the bottom */
+.image-upload{
+    width: 260px;
+    height: 280px;
+}
+
+.image-compare{
+    width: 260px;
+    height: 280px;
+}
+
+.image-analysis{
+    width: 260px;
+    height: 280px;
+}
+
+
 .index-images {
     height: 260px;
     width: auto;
