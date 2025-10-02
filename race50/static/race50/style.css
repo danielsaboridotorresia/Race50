@@ -45,14 +45,21 @@ ul, li {
     padding: 16px;
 }
 
+/* Index Content */
+.index-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
 /* Index text */
 .index-text-wrap {
-    display: inline-block;
+    flex: 2;
 }
 
 /* Index Image */
 .index-image-wrap {
-    position: absolute;
+    flex: 1;
     top: 20%;
     right: 0;
     padding: 16px;
@@ -60,7 +67,7 @@ ul, li {
 }
 
 .index-image {
-    display: flex;
+    display: block;
     max-width: 100%;
     height: 300px;
 }
