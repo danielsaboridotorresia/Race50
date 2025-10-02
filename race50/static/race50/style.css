@@ -41,8 +41,74 @@ ul, li {
 
 /* The inside of the page */
 .inside-body {
-    padding: 16px;
+  display: block;
+  padding: 16px 24px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-/* Register and login */
+/* Index page */
+.index-article {
+  width: 100%;
+  line-height: 1.55;
+  font-size: 16px;
+}
+
+/* Main image on the index */
+.index-floated-image {
+  float: right;
+  width: 38%;
+  max-width: 420px;
+  height: auto;
+  margin: 0 0 1.25rem 2.25rem;
+  border-radius: 4px;
+  display: block;
+}
+
+/* Images on the bottom of the index */
+.index-images-wrap {
+    text-align: center;
+}
+
+/* The three images on the bottom */
+.image-upload{
+    width: 260px;
+    height: 280px;
+}
+
+.image-compare{
+    width: 260px;
+    height: 280px;
+}
+
+.image-analysis{
+    width: 260px;
+    height: 280px;
+}
+
+
+.index-images {
+    height: 260px;
+    width: auto;
+}
+
+/* Clearfix utility */
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media (max-width: 992px) {
+  .index-floated-image { width: 45%; }
+}
+
+@media (max-width: 768px) {
+  .index-floated-image {
+    float: none;
+    width: 100%;
+    margin: 1rem 0 1.5rem 0;
+    margin-top: 0;
+  }
+}
 
