@@ -4,5 +4,7 @@
     Race50 - Index
 {% endblock %}
 {% block body %}
-    
+    {% if user.is_authenticated %}
+        Hello, {{ request.user }}
+    {% endif %}
 {% endblock %}
