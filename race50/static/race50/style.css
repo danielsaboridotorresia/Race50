@@ -39,7 +39,7 @@ ul, li {
     list-style-type: none;
 }
 
-/* The inside of the page - full width single column */
+/* The inside of the page */
 .inside-body {
   display: block;
   padding: 16px 24px;
@@ -47,14 +47,14 @@ ul, li {
   box-sizing: border-box;
 }
 
-/* Index article now spans full available width */
+/* Index page */
 .index-article {
   width: 100%;
   line-height: 1.55;
   font-size: 16px;
 }
 
-/* Floated image that starts lower, allowing earlier text to be higher */
+/* Main image on the index */
 .index-floated-image {
   float: right;
   width: 38%;
@@ -63,6 +63,16 @@ ul, li {
   margin: 0 0 1.25rem 2.25rem;
   border-radius: 4px;
   display: block;
+}
+
+/* Images on the bottom of the index */
+.index-images-wrap {
+    text-align: center;
+}
+
+.index-images {
+    height: 260px;
+    width: auto;
 }
 
 /* Clearfix utility */
