@@ -93,12 +93,14 @@ ul, li {
 
 
 /* Index page when user is logged in */
+/* Header of the index */
 .header{
     background-color: rgb(101, 101, 230);
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 15px;
+    padding-bottom: 10px;
 }
 .header-title {
   margin: 0;
@@ -106,6 +108,41 @@ ul, li {
 .header-buttons {
   display: flex;
   gap: 200px;
+}
+
+/* Rest of the inner-body */
+.index-session {
+  padding-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: stretch
+}
+.index-session > * {
+  width: 100%;
+  box-sizing: border-box;
+}
+.index-session img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.card-wrap {
+  display: flex;
+  align-items: stretch;
+  padding: 15px;
+  border-radius: 8px;
+
+  background-image:
+    linear-gradient(45deg, #000 25%, transparent 25%),
+    linear-gradient(-45deg, #000 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #000 75%),
+    linear-gradient(-45deg, transparent 75%, #000 75%);
+  background-size: 40px 40px; /* size of squares */
+  background-position: 0 0, 0 20px, 20px -20px, -20px 0;
+}
+.card {
+  flex: 1;
 }
 
 
