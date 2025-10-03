@@ -9,45 +9,47 @@
         <link rel="stylesheet" href="{% static 'race50/style.css' %}">
     </head>
     <body>
-        <div class="row">
+        <div class="container-fluid">
+            <div class="row g-0">
             <div class="sidebar col-lg-2 col-md-3">
                 <div class="logo-wrap">
-                    <a href="{% url 'index' %}">
-                        <img class="logo" src="{% static 'race50/images/RACE50 - logo.png' %}" alt="Race50 Logo">
-                    </a>
+                <a href="{% url 'index' %}">
+                    <img class="logo" src="{% static 'race50/images/RACE50 - logo.png' %}" alt="Race50 Logo">
+                </a>
                 </div>
                 <hr>
                 {% block nav %}
-                    <div>
-                        <h4>Last 5 sessions:</h4>
-                    </div>
+                <div>
+                    <h4>Last 5 sessions:</h4>
+                </div>
                 {% endblock %}
             </div>
+
             <div class="main col-lg-10 col-md-9">
                 <nav class="navbar navbar-expand-lg">
-                    <div class="container-fluid">
-                        <ul class="navbar-nav mr-auto"></ul>
-                            {% if user.is_authenticated %}
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
-                                </li>
-                            {% else %}
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'login' %}">Log In</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'register' %}">Register</a>
-                                </li>
-                            {% endif %}
-                        </ul>
-                    </div>
+                <div class="container-fluid px-0">
+                    <ul class="navbar-nav ml-auto">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}">Register</a>
+                        </li>
+                    {% endif %}
+                    </ul>
+                </div>
                 </nav>
+
                 <div class="inside-body">
-                    {% block body %}
-                    {% endblock %}
+                {% block body %}{% endblock %}
                 </div>
             </div>
+            </div>
         </div>
-
     </body>
 </html>

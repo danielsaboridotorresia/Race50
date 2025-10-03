@@ -2,8 +2,8 @@
 body {
     margin: 0;
     background-color: white;
-    overflow-x: hidden;
 }
+
 
 /* Sidebar on the left */
 .sidebar {
@@ -19,25 +19,28 @@ body {
   align-items: center;
   height: auto;
 }
-
 .logo {
     display: flex;
     max-width: 100%;
     height: auto;
 }
 
+
 /* The whole page except sidebar */
 .main {
     padding: 0px;
 }
 
+
 /* Navigation bar on the top of the screen */
 .navbar {
     background-color: #f0f0f0;
+    box-sizing: border-box;
 }
 ul, li {
     list-style-type: none;
 }
+
 
 /* The inside of the page */
 .inside-body {
@@ -47,7 +50,8 @@ ul, li {
   box-sizing: border-box;
 }
 
-/* Index page */
+
+/* Index page when user is not logged in */
 .index-article {
   width: 100%;
   line-height: 1.55;
@@ -69,28 +73,78 @@ ul, li {
 .index-images-wrap {
     text-align: center;
 }
-
 /* The three images on the bottom */
 .image-upload{
     width: 260px;
     height: 280px;
 }
-
 .image-compare{
     width: 260px;
     height: 280px;
 }
-
 .image-analysis{
     width: 260px;
     height: 280px;
 }
-
-
 .index-images {
     height: 260px;
     width: auto;
 }
+
+
+/* Index page when user is logged in */
+/* Header of the index */
+.header{
+    background-color: rgb(101, 101, 230);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding-bottom: 10px;
+}
+.header-title {
+  margin: 0;
+}
+.header-buttons {
+  display: flex;
+  gap: 200px;
+}
+
+/* Rest of the inner-body */
+.index-session {
+  padding-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: stretch
+}
+.index-session > * {
+  width: 100%;
+  box-sizing: border-box;
+}
+.index-session img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.card-wrap {
+  display: flex;
+  align-items: stretch;
+  padding: 15px;
+  border-radius: 8px;
+
+  background-image:
+    linear-gradient(45deg, #000 25%, transparent 25%),
+    linear-gradient(-45deg, #000 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #000 75%),
+    linear-gradient(-45deg, transparent 75%, #000 75%);
+  background-size: 40px 40px; /* size of squares */
+  background-position: 0 0, 0 20px, 20px -20px, -20px 0;
+}
+.card {
+  flex: 1;
+}
+
 
 /* Clearfix utility */
 .clearfix::after {
@@ -98,11 +152,9 @@ ul, li {
   display: table;
   clear: both;
 }
-
 @media (max-width: 992px) {
   .index-floated-image { width: 45%; }
 }
-
 @media (max-width: 768px) {
   .index-floated-image {
     float: none;

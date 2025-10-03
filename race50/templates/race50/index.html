@@ -5,40 +5,80 @@
     Race50 - Index
 {% endblock %}
 {% block body %}
-{% if user.is_authenticated %}
-    <h1>This page is under construction</h1>
-    <p>Hello, {{ request.user }}</p>
-{% else %}
-    <div class="index-article">
-        <p class="index-text">Karting is more than just raw speed — it’s the art of precision, the science of consistency, and the pursuit of constant progress. Every time you get into the kart, you aren’t just driving laps; you’re writing a story of performance, a sequence of braking points, throttle applications, corner entries, and exits that add up to something greater than the stopwatch alone can show. Every lap tells a story, and within that story are hidden lessons — lessons that can make you not just faster, but smarter, calmer, and more consistent behind the wheel. Race50 exists to help you unlock those lessons.</p>
-
-        <p class="index-text">Raw telemetry data on its own can be overwhelming, numbers and times without context. Race50 transforms that data into something you can use. With just a few clicks, your laps come alive as clear, powerful insights that show exactly where you are gaining time, where you are losing it, and how small improvements can deliver big results. Upload your sessions and immediately see the story of your driving: your strongest corners, your weaknesses, and the hidden potential waiting to be unlocked.</p>
-
-        <img class="index-floated-image" src="{% static 'race50/images/indeximage.jpg' %}" alt="Karting image">
-
-        <p class="index-text">But Race50 doesn’t stop there. True growth comes from comparison, from seeing not only what you did in one lap but how it stacks up against another. That’s why Race50 lets you compare sessions side by side, lap against lap, sector against sector. You can spot patterns in your driving style, discover where you are consistent and where you need refinement.</p>
-
-        <p class="index-text">Karting is about more than just being quick today — it’s about building towards tomorrow. The journey to becoming a faster driver isn’t measured only in trophies, but in the confidence that grows with each session, the understanding of your kart’s behavior, and the consistency you develop over time. Race50 is your companion in that journey. Whether you are preparing for your first club race or pushing for the front in a championship, Race50 gives you the information you need to make every session count.</p>
-
-        <p class="index-text">Every analysis is an opportunity. Every comparison is a new perspective. And every lap you drive becomes a chance to learn, to improve, and to move one step closer to your personal best. Race50 doesn’t just give you numbers — it gives you clarity. It doesn’t just show you times — it shows you trends. It doesn’t just analyze your driving — it empowers you to understand yourself as a driver.</p>
-
-        <p class="index-text">So whether you’re fighting for tenths, aiming for consistency, or just wanting to truly understand your performance, Race50 is here to help. Upload your data. Discover the insights. Compare your sessions. Analyze your performance. And above all — keep racing smarter, faster, and better, every time you hit the track. Race50 turns every lap into an opportunity, and every opportunity into a step closer to your very best.</p>
-
-        <div class="clearfix"></div>
-    </div>
-    <div class="index-images-wrap" style="width: 100%; display: table;">
-        <div class="image-upload" style="display: table-cell;">
-            <img class="index-images" src="{% static 'race50/images/uploadsessions.png' %}" alt="Upload Sessions">
-            <h6>Upload Sessions</h6>
+    {% if user.is_authenticated %}
+        <div class="header">
+            <div class="header-title">
+                <h2>Welcome back, {{ request.user }}!</h2>
+            </div>
+            <div class="header-message">
+                <h5 class="header-message-text">
+                    Time to push for your best laps — let’s make this session count!
+                </h5>
+            </div>
+            <div class="header-buttons">
+                <div class="header-buttons-sessions">
+                    <button>All sessions</button>
+                </div>
+                <div class="header-buttons-compare">
+                    <button>Compare Sessions</button>
+                </div>
+            </div>
         </div>
-        <div class="image-compare" style="display: table-cell;">
-            <img class="index-images" src="{% static 'race50/images/comparesessions.png' %}" alt="Compare Sessions">
-            <h6>Compare Sessions</h6>
+        <div class="index-session">
+            {% if sessions %}
+                {% for session in sessions %}
+                    <li>Session on {{ session.date }}</li>
+                {% endfor %}
+            {% else %}
+                <img class="index-session-imageleft" src="{% static 'race50/images/leftindex.jpg' %}" alt="D. FERRER side profile">
+                <div class="card-wrap">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Last Session</h5>
+                            <p class="card-text">You haven't uploaded any sessions yet. Upload a session to unlock your full potential!</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><small>Need help? Check <a href="#">our guide</a> for an example file.</small></li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="#" class="card-link">Upload a session here.</a>
+                        </div>
+                    </div>
+                </div>
+                <img class="index-session-imageleft" src="{% static 'race50/images/rightindex.jpg' %}" alt="Rental Karting">
+            {% endif %}
         </div>
-        <div class="image-analysis" style="display: table-cell;">
-            <img class="index-images" src="{% static 'race50/images/sessionanalysis.png' %}" alt="Session Analysis">
-            <h6>Session Analysis</h6>
+    {% else %}
+        <div class="index-article">
+            <p class="index-text">Karting is more than just raw speed — it’s the art of precision, the science of consistency, and the pursuit of constant progress. Every time you get into the kart, you aren’t just driving laps; you’re writing a story of performance, a sequence of braking points, throttle applications, corner entries, and exits that add up to something greater than the stopwatch alone can show. Every lap tells a story, and within that story are hidden lessons — lessons that can make you not just faster, but smarter, calmer, and more consistent behind the wheel. Race50 exists to help you unlock those lessons.</p>
+
+            <p class="index-text">Raw telemetry data on its own can be overwhelming, numbers and times without context. Race50 transforms that data into something you can use. With just a few clicks, your laps come alive as clear, powerful insights that show exactly where you are gaining time, where you are losing it, and how small improvements can deliver big results. Upload your sessions and immediately see the story of your driving: your strongest corners, your weaknesses, and the hidden potential waiting to be unlocked.</p>
+
+            <img class="index-floated-image" src="{% static 'race50/images/indeximage.jpg' %}" alt="Karting image">
+
+            <p class="index-text">But Race50 doesn’t stop there. True growth comes from comparison, from seeing not only what you did in one lap but how it stacks up against another. That’s why Race50 lets you compare sessions side by side, lap against lap, sector against sector. You can spot patterns in your driving style, discover where you are consistent and where you need refinement.</p>
+
+            <p class="index-text">Karting is about more than just being quick today — it’s about building towards tomorrow. The journey to becoming a faster driver isn’t measured only in trophies, but in the confidence that grows with each session, the understanding of your kart’s behavior, and the consistency you develop over time. Race50 is your companion in that journey. Whether you are preparing for your first club race or pushing for the front in a championship, Race50 gives you the information you need to make every session count.</p>
+
+            <p class="index-text">Every analysis is an opportunity. Every comparison is a new perspective. And every lap you drive becomes a chance to learn, to improve, and to move one step closer to your personal best. Race50 doesn’t just give you numbers — it gives you clarity. It doesn’t just show you times — it shows you trends. It doesn’t just analyze your driving — it empowers you to understand yourself as a driver.</p>
+
+            <p class="index-text">So whether you’re fighting for tenths, aiming for consistency, or just wanting to truly understand your performance, Race50 is here to help. Upload your data. Discover the insights. Compare your sessions. Analyze your performance. And above all — keep racing smarter, faster, and better, every time you hit the track. Race50 turns every lap into an opportunity, and every opportunity into a step closer to your very best.</p>
+
+            <div class="clearfix"></div>
         </div>
-    </div>
-{% endif %}
+        <div class="index-images-wrap" style="width: 100%; display: table;">
+            <div class="image-upload" style="display: table-cell;">
+                <img class="index-images" src="{% static 'race50/images/uploadsessions.png' %}" alt="Upload Sessions">
+                <h6>Upload Sessions</h6>
+            </div>
+            <div class="image-compare" style="display: table-cell;">
+                <img class="index-images" src="{% static 'race50/images/comparesessions.png' %}" alt="Compare Sessions">
+                <h6>Compare Sessions</h6>
+            </div>
+            <div class="image-analysis" style="display: table-cell;">
+                <img class="index-images" src="{% static 'race50/images/sessionanalysis.png' %}" alt="Session Analysis">
+                <h6>Session Analysis</h6>
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}
