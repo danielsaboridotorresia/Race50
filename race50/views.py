@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model, authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.shortcuts import render, HttpResponseRedirect
 from django.urls import reverse
@@ -8,6 +9,11 @@ User = get_user_model()
 # Create your views here.
 def index(request):
     return render(request, "race50/index.html")
+
+
+@login_required
+def upload(request):
+    return render(request, "race50/upload.html")
 
 
 def login_view(request):

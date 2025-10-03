@@ -1,0 +1,40 @@
+/* Header of the upload */
+.header{
+    background-color: rgb(101, 101, 230);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding-bottom: 10px;
+}
+.header-title {
+  margin: 0;
+}
+.header-buttons {
+  display: flex;
+  gap: 200px;
+}
+
+/* Dropzone base */
+#dropzone {
+  border: 2px dashed #6c757d;
+  border-radius: 8px;
+  padding: 3rem;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+/* Highlight when dragging over */
+#dropzone.bg-light {
+  background-color: #f8f9fa !important;
+  border-color: #007bff; 
+}
+/* checkered border */
+#dropzone.checkered {
+  border: 10px solid transparent;
+  border-image: repeating-linear-gradient(
+    45deg,
+    black 0 10px,
+    white 10px 20px
+  ) 30;
+}

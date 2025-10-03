@@ -1,0 +1,51 @@
+/* Body general structure */
+body {
+    margin: 0;
+    background-color: white;
+}
+
+
+/* Sidebar on the left */
+.sidebar {
+    background-color: #f0f0f0;
+    height: 100vh;
+    padding: 20px;
+}
+
+/* Logo top left */
+.logo-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+}
+.logo {
+    display: flex;
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* The whole page except sidebar */
+.main {
+    padding: 0px;
+}
+
+
+/* Navigation bar on the top of the screen */
+.navbar {
+    background-color: #f0f0f0;
+    box-sizing: border-box;
+}
+ul, li {
+    list-style-type: none;
+}
+
+
+/* The inside of the page */
+.inside-body {
+  display: block;
+  padding: 16px 24px;
+  width: 100%;
+  box-sizing: border-box;
+}

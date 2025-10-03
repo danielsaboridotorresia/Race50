@@ -2,4 +2,30 @@
 
 {% block title %}Race50 - Upload Page{% endblock %}
 {% block body %}
+    <div class="header">
+        <div class="header-title">
+            <h2>Upload Session CSV</h2>
+        </div>
+        <div class="header-message">
+            <h5 class="header-message-text" style="text-align: center;">
+                CSV header format: SessionID,Track,Date,Lap,LapTime_ms,S1_ms,S2_ms,S3_ms,Notes <small>(All times in miliseconds)</small>
+            </h5>
+            <h6 class="header-message-text" style="text-align: center;">
+                Need help? Check <a href="#">our guide</a> for an example file.
+            </h6>
+        </div>
+    </div>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div id="dropzone" class="mb-3">
+            <p class="mb-0">Drag & drop your CSV file here, or click to select</p>
+            <input type="file" id="sessionFile" name="csv_file" accept=".csv" style="display:none;" required>
+        </div>
+        <div id="file-name" class="text-muted mb-3"></div>
+        <button type="submit" class="btn btn-primary">Upload</button>
+    </form>
+
+    {% load static %}
+        <script src="{% static 'race50/js/upload.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'race50/css/upload.css' %}">
 {% endblock %}

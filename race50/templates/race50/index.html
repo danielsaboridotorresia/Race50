@@ -41,7 +41,7 @@
                             <li class="list-group-item"><small>Need help? Check <a href="#">our guide</a> for an example file.</small></li>
                         </ul>
                         <div class="card-body">
-                            <a href="#" class="card-link">Upload a session here.</a>
+                            <a href="{% url 'upload' %}" class="card-link">Upload a session here.</a>
                         </div>
                     </div>
                 </div>
@@ -81,4 +81,6 @@
             </div>
         </div>
     {% endif %}
+    {% load static %}
+        <link rel="stylesheet" href="{% static 'race50/css/index.css' %}">
 {% endblock %}
