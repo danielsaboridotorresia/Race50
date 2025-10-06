@@ -15,6 +15,9 @@
             </h6>
         </div>
     </div>
+    {% if message %}
+        <div class="alert alert-danger">{{ message|safe }}</div>
+    {% endif %}
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div id="dropzone" class="mb-3">
