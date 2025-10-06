@@ -8,6 +8,17 @@ import io
 
 User = get_user_model()
 
+# Helper functions
+def try_parse_int_positive(value):
+    try:
+        num = int(value)
+        if num > 0:
+            return True, num
+        return False, None
+    except ValueError:
+        return False, None
+
+
 # Create your views here.
 def index(request):
     return render(request, "race50/index.html")
@@ -59,10 +70,45 @@ def upload(request):
             row_count += 1
             print(row)
 
+        # Dictionaries for results
+        errors = []
+        valid_rows = []
+
+        # Keys for headers
+        session_id = "SessionID"
+        track = "Track"
+        date = "Date"
+        lapnum = "Lap"
+        laptime = "LapTime_ms"
+        s1time = "S1_ms"
+        s2time = "S2_ms"
+        s3time = "S3_ms"
+        notes = "Notes"
+
+        file_session_id = None
+
+        print("Starting to read rows")
+        for (idx, row) in enumerate(reader, start=2):
+            require = [session_id, track, date, lapnum, laptime, s1time, s2time, s3time]
+            if any(row.get(col, "").strip() == "" for col in require):
+                errors.append(f"Row {idx}: missing required fields")
+                continue
+
+            ok_lap, lap = try_parse_int_positive(row[lapnum])
+            print(ok_lap, lap)
+            ok_total, total = try_parse_int_positive(row[laptime])
+            ok_s1, s1 = try_parse_int_positive(row[s1time])
+            ok_s2, s2 = try_parse_int_positive(row[s2time])
+            ok_s3, s3 = try_parse_int_positive(row[s3time])
+
+            if not (ok_lap and ok_s1 and ok_s2 and ok_s3 and ok_total):
+                errors.append(f"Row {idx}: values must be positive")
+                continue
+
         if row_count == 0:
             return render(request, "race50/upload.html", {"message": "CSV has a header but no data rows"})
         else:
-            return render(request, "race50/upload.html", {"message": f"Parsed successfully with {row_count} rows"})
+            return render(request, "race50/upload.html", {"message": f"Parsed successfully with {row_count} rows"})     
     return render(request, "race50/upload.html")
 
 
