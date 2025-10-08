@@ -41,7 +41,13 @@ def format_ms(ms):
 
 # Create your views here.
 def index(request):
-    return render(request, "race50/index.html")
+    if request.user.is_authenticated:
+        session = (Session.objects.filter(user=request.user).order_by('-created_at', '-pk').first())
+        return render(request, "race50/index.html", {
+            "session": session
+        })
+    else:
+        return render(request, "race50/index.html")
 
 
 @login_required
@@ -152,7 +158,6 @@ def upload(request):
             "errors": errors
         })
 
-    # ---------- Step 4: Analysis ----------
     lap_times = [r["total_ms"] for r in valid_rows]
     s1_times  = [r["s1_ms"]    for r in valid_rows]
     s2_times  = [r["s2_ms"]    for r in valid_rows]
@@ -185,7 +190,6 @@ def upload(request):
         "best_s3_ms": bests3_ms
     }
 
-    # ---------- Step 6: Persist analyzed data ----------
     # local parse (uses your 'import datetime' module)
     def _parse_date_local(s):
         for fmt in ("%Y-%m-%d", "%d/%m/%Y", "%Y/%m/%d"):

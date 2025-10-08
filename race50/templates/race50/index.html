@@ -25,10 +25,26 @@
             </div>
         </div>
         <div class="index-session">
-            {% if sessions %}
-                {% for session in sessions %}
-                    <li>Session on {{ session.date }}</li>
-                {% endfor %}
+            {% if session %}
+                <img class="index-session-imageleft" src="{% static 'race50/images/leftindex.jpg' %}" alt="D. FERRER side profile">
+                <div class="card-wrap">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Last Session: {{ session.track }}</h5>
+                            <p class="card-text">Your last uploaded session was at {{ session.track }} on {{ session.date }}</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Best lap: {{ session.best_lap_ms }}ms</li>
+                            <li class="list-group-item">Theoretical Best Lap: {{ session.tbl_ms }}ms</li>
+                            <li class="list-group-item">Consistency Percent: {{ session.consistency_percent|floatformat:2 }}%</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="#" class="card-link">Details</a>
+                            <a href="{% url 'upload' %}" class="card-link">Upload more sessions</a>
+                        </div>
+                    </div>
+                </div>
+                <img class="index-session-imageleft" src="{% static 'race50/images/rightindex.jpg' %}" alt="Rental Karting">
             {% else %}
                 <img class="index-session-imageleft" src="{% static 'race50/images/leftindex.jpg' %}" alt="D. FERRER side profile">
                 <div class="card-wrap">
