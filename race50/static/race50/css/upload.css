@@ -16,7 +16,9 @@
 }
 
 /* Dropzone base */
-#dropzone {
+.dropzone {
+  place-content: center;
+  height: 320px;
   border: 2px dashed #6c757d;
   border-radius: 8px;
   padding: 3rem;
