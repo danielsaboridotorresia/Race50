@@ -40,6 +40,18 @@ def format_ms(ms):
     return f"{minutes}:{seconds:02}.{millis:03}"
 
 # Create your views here.
+def global_context(request):
+    if request.user.is_authenticated:
+        last_five = Session.objects.filter(user=request.user).order_by('-created_at')[:5]
+        return {
+            "sessions": last_five
+        }
+    else:
+        last_five = Session.objects.none()
+        return {
+            "sessions": last_five
+        }
+
 def index(request):
     if request.user.is_authenticated:
         session = (Session.objects.filter(user=request.user).order_by('-created_at', '-pk').first())
@@ -54,8 +66,6 @@ def index(request):
 def upload(request):
     if request.method != "POST":
         return render(request, "race50/upload.html")
-
-    # ---------- Step 1: File validation ----------
     csv_file = request.FILES.get('csv_file')
     if not csv_file:
         return render(request, "race50/upload.html", {"message": "No file uploaded."})
@@ -63,8 +73,7 @@ def upload(request):
         return render(request, "race50/upload.html", {"message": "Invalid file extension. File must be '.csv'."})
     if csv_file.size > 10 * 1024 * 1024:  # 10 MB
         return render(request, "race50/upload.html", {"message": "File too large (limit: 10MB)."})
-
-    # ---------- Step 2: Binary & text decoding ----------
+    
     head = csv_file.file.read(4096)
     if b"\x00" in head:
         return render(request, "race50/upload.html", {"message": "File appears to be binary or corrupted."})
@@ -85,7 +94,6 @@ def upload(request):
     if not reader.fieldnames:
         return render(request, "race50/upload.html", {"message": "Missing or invalid header."})
 
-    # ---------- Step 3: Row parsing ----------
     errors = []
     valid_rows = []
     row_count = 0
@@ -242,8 +250,8 @@ def upload(request):
 
     return render(request, "race50/upload.html", {
         "message": f"Session analyzed and saved successfully — best lap: {format_ms(summary['best_lap_ms'])}",
-        "summary": summary,                 # raw numbers if you need them elsewhere
-        "pretty": pretty_summary,           # strings ready to display
+        "summary": summary,
+        "pretty": pretty_summary,
         "errors": errors,
         "rows_total": row_count,
         "rows_valid": len(valid_rows),

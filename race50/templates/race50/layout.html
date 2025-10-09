@@ -20,7 +20,19 @@
                 <hr>
                 {% block nav %}
                 <div>
-                    <h4>Last 5 sessions:</h4>
+                    {% if user.is_authenticated %}
+                        <h4>Last 5 sessions:</h4>
+                        {% if sessions %}
+                            {% for session in sessions %}
+                                <a href="#">{{ session.track }} {{ session.date }} {{ session.best_lap_ms }}</a><br>
+                            {% endfor %}
+                            <br>
+                            <a href="#">See more</a>
+                        {% else %}
+                            <h6>No sessions yet.</h6>
+                        {% endif %}
+                    {% else %}
+                    {% endif %}
                 </div>
                 {% endblock %}
             </div>
