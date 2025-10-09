@@ -8,11 +8,11 @@
     padding-bottom: 10px;
 }
 .header-title {
-  margin: 0;
+    margin: 0;
 }
 .header-buttons {
-  display: flex;
-  gap: 200px;
+    display: flex;
+    gap: 200px;
 }
 
 .header-message {
@@ -24,4 +24,26 @@
 
 .header-message-text {
     text-align: center;
+}
+
+/* Body of the session page */
+.body-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.body-left,
+.body-right {
+    flex: 1;
+    padding: 20px;
+}
+
+.body-separation {
+    width: 4px;
+    background-color: #444;
+    height: auto;
+    min-height: 200px;
+    margin: 0 40px;
+    border-radius: 2px;
 }
