@@ -17,10 +17,10 @@
             </div>
             <div class="header-buttons">
                 <div class="header-buttons-sessions">
-                    <button>All sessions</button>
+                    <button id="sessions-button">All sessions</button>
                 </div>
                 <div class="header-buttons-compare">
-                    <button>Compare Sessions</button>
+                    <button id="upload-button" data-url="{% url 'upload' %}">Upload Sessions</button>
                 </div>
             </div>
         </div>
@@ -40,7 +40,6 @@
                         </ul>
                         <div class="card-body">
                             <a href="#" class="card-link">Details</a>
-                            <a href="{% url 'upload' %}" class="card-link">Upload more sessions</a>
                         </div>
                     </div>
                 </div>
@@ -98,5 +97,6 @@
         </div>
     {% endif %}
     {% load static %}
+        <script src="{% static 'race50/js/index.js' %}"></script>
         <link rel="stylesheet" href="{% static 'race50/css/index.css' %}">
 {% endblock %}
