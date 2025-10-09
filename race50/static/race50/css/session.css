@@ -33,7 +33,22 @@
     justify-content: center;
 }
 
-.body-left,
+.body-left {
+    display: flex;
+    align-items: flex-start;
+    flex: 1;
+    padding: 20px;
+}
+
+.lap-num,
+.lap-time,
+.lap-s1,
+.lap-s2,
+.lap-s3 {
+    flex: 1;
+    padding: 20px;
+}
+
 .body-right {
     flex: 1;
     padding: 20px;
