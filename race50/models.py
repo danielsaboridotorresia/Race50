@@ -11,7 +11,7 @@ class User(AbstractUser):
 
 class Session(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="sessions")
-    external_id = models.CharField(max_length=200, null=True, blank=True)  # CSV SessionID
+    external_id = models.CharField(max_length=200, null=True, blank=True)
     track = models.CharField(max_length=100)
     date = models.DateField()
 

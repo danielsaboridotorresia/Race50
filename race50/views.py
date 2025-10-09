@@ -255,8 +255,10 @@ def upload(request):
 @login_required
 def session(request, session_id):
     session = (Session.objects.get(user=request.user, id=session_id))
+    laps = (Lap.objects.filter(session=session))
     return render(request, "race50/session.html", {
-        "session": session
+        "session": session,
+        "laps": laps
     })
 
 
