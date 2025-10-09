@@ -256,9 +256,18 @@ def upload(request):
 def session(request, session_id):
     session = (Session.objects.get(user=request.user, id=session_id))
     laps = (Lap.objects.filter(session=session))
+    posibilities = (Session.objects.filter(user=request.user, track=session.track))
+
+    if request.method == "POST":
+        selected_option_id = request.POST.get("selectedOption")
+        if selected_option_id:
+            print("User selected:", selected_option_id)
+        return redirect("session", session_id=session.id)
+    
     return render(request, "race50/session.html", {
         "session": session,
-        "laps": laps
+        "laps": laps,
+        "posibilities": posibilities
     })
 
 

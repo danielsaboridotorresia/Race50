@@ -66,7 +66,16 @@
         </div>
         <div class="body-separation"></div>
         <div class="body-right">
-            <h4>Comparison with:</h4>
+            <form action="{% url 'session' session.id %}" method="post">
+            {% csrf_token %}
+                <label for="comparison"><h4>Comparison with:</h4></label>
+                <select id="comparison" name="selectedOption">
+                    {% for posibility in posibilities %}
+                    <option>{{ posibility.track }}:{{ posibility.date }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit">Compare</button>
+            </form>
         </div>
     </div>
     {% load static %}
