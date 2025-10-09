@@ -29,17 +29,19 @@
 /* Body of the session page */
 .body-container {
     display: flex;
-    align-items: flex-start;
+    align-items: stretch;
     justify-content: center;
+    box-sizing: border-box;
 }
 
 .body-left {
-    display: flex;
-    align-items: flex-start;
-    flex: 1;
-    padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
 }
-
 .lap-num,
 .lap-time,
 .lap-s1,
@@ -53,13 +55,12 @@
 .body-right {
     flex: 1;
     padding: 20px;
+    box-sizing: border-box;
 }
 
 .body-separation {
     width: 4px;
     background-color: #444;
-    height: auto;
-    min-height: 200px;
     margin: 0 40px;
     border-radius: 2px;
 }
