@@ -41,7 +41,7 @@
                     {% if lap.lap == session.best_lap_number %}
                         <div style="background-color: blueviolet;">{{ lap.total_ms }}</div>
                     {% else %}
-                        {{ lap.total_ms }}
+                        {{ lap.total_ms }}<br>
                     {% endif %} 
                 {% endfor %}
             </div>
