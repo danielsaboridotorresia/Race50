@@ -24,7 +24,7 @@
                         <h4>Last 5 sessions:</h4>
                         {% if sessions %}
                             {% for session in sessions %}
-                                <a href="#">{{ session.track }} {{ session.date }} {{ session.best_lap_ms }}</a><br>
+                                <a href="{% url 'session' session.id %}">{{ session.track }} {{ session.date }} {{ session.best_lap_ms }}</a><br>
                             {% endfor %}
                             <br>
                             <a href="#">See more</a>

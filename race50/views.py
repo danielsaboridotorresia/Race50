@@ -4,7 +4,7 @@ from django import template
 from django.contrib.auth import get_user_model, authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError, transaction
-from django.shortcuts import render, HttpResponseRedirect
+from django.shortcuts import render, HttpResponseRedirect, redirect
 from django.urls import reverse
 import io
 import math
@@ -238,7 +238,7 @@ def upload(request):
             for r in valid_rows
         ])
 
-    # Pretty display values using your helper (callable directly)
+
     top_laps = sorted(valid_rows, key=lambda r: r["total_ms"])[:5]
     top_laps_pretty = [{**r, "total_str": format_ms(r["total_ms"])} for r in top_laps]
     pretty_summary = {
@@ -248,20 +248,10 @@ def upload(request):
         "consistency_str": f"{summary['consistency_percent']:.1f}%"
     }
 
-    return render(request, "race50/upload.html", {
-        "message": f"Session analyzed and saved successfully — best lap: {format_ms(summary['best_lap_ms'])}",
-        "summary": summary,
-        "pretty": pretty_summary,
-        "errors": errors,
-        "rows_total": row_count,
-        "rows_valid": len(valid_rows),
-        "saved_session_id": session_obj.id,
-        "top_laps": top_laps_pretty,
-    })
+    return redirect("session", session_id=session_obj.id)
 
 def session(request, session_id):
     session = (Session.objects.get(user=request.user, id=session_id))
-    print(session)
     return render(request, "race50/session.html", {
         "session": session
     })
