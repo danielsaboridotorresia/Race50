@@ -5,7 +5,27 @@
 {% endblock %}
 
 {% block body %}
-    {{ session.track }}
+    <div class="header">
+        <div class="header-title">
+            <br>
+            <h2>{{ session.track }}: {{ session.date }}</h2>
+        </div>
+        <div class="header-message">
+            <h5 class="header-message-text">
+                BESTLAP: <br>
+                {{ session.best_lap_ms }}ms
+            </h5>
+            <h5 class="header-message-text">
+                AVERAGE: <br>
+                {{ session.avg_lap_ms }}ms
+            </h5>
+            <h5 class="header-message-text">
+                TBL: <br>
+                {{ session.tbl_ms }}ms
+            </h5>
+        </div>
+        <br>
+    </div>
     {% load static %}
         <link rel="stylesheet" href="{% static 'race50/css/session.css' %}">
 {% endblock %}

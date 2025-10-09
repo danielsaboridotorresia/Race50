@@ -1,0 +1,27 @@
+/* Header of the session page */
+.header{
+    background-color: rgb(101, 101, 230);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding-bottom: 10px;
+}
+.header-title {
+  margin: 0;
+}
+.header-buttons {
+  display: flex;
+  gap: 200px;
+}
+
+.header-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+}
+
+.header-message-text {
+    text-align: center;
+}

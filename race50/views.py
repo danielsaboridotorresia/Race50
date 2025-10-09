@@ -52,6 +52,7 @@ def global_context(request):
             "sessions": last_five
         }
 
+
 def index(request):
     if request.user.is_authenticated:
         session = (Session.objects.filter(user=request.user).order_by('-created_at', '-pk').first())
@@ -250,6 +251,8 @@ def upload(request):
 
     return redirect("session", session_id=session_obj.id)
 
+
+@login_required
 def session(request, session_id):
     session = (Session.objects.get(user=request.user, id=session_id))
     return render(request, "race50/session.html", {
