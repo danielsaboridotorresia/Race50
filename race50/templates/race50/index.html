@@ -39,7 +39,7 @@
                             <li class="list-group-item">Consistency Percent: {{ session.consistency_percent|floatformat:2 }}%</li>
                         </ul>
                         <div class="card-body">
-                            <a href="#" class="card-link">Details</a>
+                            <a href="{% url 'session' session.id %}" class="card-link">Details</a>
                             <a href="{% url 'upload' %}" class="card-link">Upload more sessions</a>
                         </div>
                     </div>
