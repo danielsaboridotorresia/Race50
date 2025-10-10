@@ -18,7 +18,9 @@
             </div>
             <div class="header-buttons">
                 <div class="header-buttons-sessions">
-                    <button>All sessions</button>
+                    <a href="{% url 'sessions' %}">
+                        <button id="all_sessions">All sessions</button>
+                    </a>
                 </div>
                 <div class="header-buttons-compare">
                     <a href="{% url 'upload' %}">

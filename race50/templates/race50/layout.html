@@ -27,7 +27,7 @@
                                 <a href="{% url 'session' session.id %}">{{ session.track }} {{ session.date }} {{ session.best_lap_ms }}</a><br>
                             {% endfor %}
                             <br>
-                            <a href="#">See more</a>
+                            <a href="{% url 'sessions' %}">See more</a>
                         {% else %}
                             <h6>No sessions yet.</h6>
                         {% endif %}
