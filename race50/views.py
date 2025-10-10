@@ -274,7 +274,7 @@ def sessions(request):
 
 
 def guide(request):
-    return render(request, "race50/guide")
+    return render(request, "race50/guide.html")
 
 
 def login_view(request):
