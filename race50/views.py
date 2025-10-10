@@ -273,6 +273,10 @@ def sessions(request):
     })
 
 
+def guide(request):
+    return render(request, "race50/guide")
+
+
 def login_view(request):
     if request.method == "POST":
 

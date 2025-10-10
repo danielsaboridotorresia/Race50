@@ -6,6 +6,7 @@ urlpatterns = [
     path("upload/", views.upload, name="upload"),
     path("sessions", views.sessions, name="sessions"),
     path("session/<int:session_id>", views.session, name="session"),
+    path("guide", views.guide, name="guide"),
     path("login/", views.login_view, name="login"),
     path("register/", views.register_view, name="register"),
     path("logout/", views.logout_view, name="logout")
