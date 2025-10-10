@@ -32,12 +32,6 @@ def parse_date_safe(s: str):
             pass
     return datetime.today().date()
 
-@register.filter
-def format_ms(ms):
-    minutes = ms // 60000
-    seconds = (ms % 60000) // 1000
-    millis  = ms % 1000
-    return f"{minutes}:{seconds:02}.{millis:03}"
 
 # Create your views here.
 def global_context(request):
@@ -264,17 +258,20 @@ def session(request, session_id):
             url = f"{reverse('session', args=[session.id])}?compare={selected_option_id}"
             return redirect(url)
         
-    compare = None
     compare_id = request.GET.get("compare")
     if compare_id:
         compare = (Session.objects.get(user=request.user, id=compare_id))
-        compare_laps = (Lap.objects.filter(session=compare))
-    
+        if compare:
+            compare_laps = (Lap.objects.filter(session=compare))
+    else:
+        compare = None
+        compare_laps = None
     return render(request, "race50/session.html", {
         "session": session,
         "laps": laps,
         "posibilities": posibilities,
-        "compare": compare
+        "compare": compare,
+        "compare_laps": compare_laps
     })
 
 

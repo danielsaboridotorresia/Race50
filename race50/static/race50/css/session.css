@@ -34,7 +34,8 @@
     box-sizing: border-box;
 }
 
-.body-left {
+.body-right-laps,
+.body-left-laps {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -42,6 +43,7 @@
   padding: 20px;
   box-sizing: border-box;
 }
+
 .lap-num,
 .lap-time,
 .lap-s1,
@@ -52,7 +54,8 @@
     text-align: center;
 }
 
-.body-right {
+.body-right,
+.body-left {
     flex: 1;
     padding: 20px;
     box-sizing: border-box;
