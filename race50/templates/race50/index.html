@@ -21,7 +21,9 @@
                     <button>All sessions</button>
                 </div>
                 <div class="header-buttons-compare">
-                    <button>Compare Sessions</button>
+                    <a href="{% url 'upload' %}">
+                        <button id="upload-session">Upload Sessions</button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -41,7 +43,6 @@
                         </ul>
                         <div class="card-body">
                             <a href="{% url 'session' session.id %}" class="card-link">Details</a>
-                            <a href="{% url 'upload' %}" class="card-link">Upload more sessions</a>
                         </div>
                     </div>
                 </div>
