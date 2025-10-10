@@ -1,0 +1,17 @@
+{% extends "race50/layout.html" %}
+{% load static %}
+{% load race50_extras %}
+
+{% block title %}
+    Race50 - All sessions
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        {% for session in sessions %}
+            <li>
+                {{ session.track }}: {{ session.date }}
+            </li>
+        {% endfor %}
+    </div>
+{% endblock %}

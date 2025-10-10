@@ -264,6 +264,15 @@ def session(request, session_id):
     })
 
 
+@login_required
+def sessions(request):
+    sessions = (Session.objects.filter(user=request.user))
+
+    return render(request, "race50/sessions.html", {
+        "sessions": sessions
+    })
+
+
 def login_view(request):
     if request.method == "POST":
 
