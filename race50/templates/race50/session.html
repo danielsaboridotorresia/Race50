@@ -1,0 +1,11 @@
+{% extends "race50/layout.html" %}
+{% load static %}
+{% block title %}
+    Race50 - Session
+{% endblock %}
+
+{% block body %}
+    {{ session.track }}
+    {% load static %}
+        <link rel="stylesheet" href="{% static 'race50/css/session.css' %}">
+{% endblock %}

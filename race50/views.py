@@ -259,6 +259,12 @@ def upload(request):
         "top_laps": top_laps_pretty,
     })
 
+def session(request, session_id):
+    session = (Session.objects.get(user=request.user, id=session_id))
+    print(session)
+    return render(request, "race50/session.html", {
+        "session": session
+    })
 
 
 def login_view(request):
