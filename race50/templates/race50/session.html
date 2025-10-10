@@ -1,5 +1,7 @@
 {% extends "race50/layout.html" %}
 {% load static %}
+{% load race50_extras %}
+
 {% block title %}
     Race50 - Session
 {% endblock %}
@@ -13,55 +15,59 @@
         <div class="header-message">
             <h5 class="header-message-text">
                 BESTLAP: <br>
-                {{ session.best_lap_number }} - {{ session.best_lap_ms }}ms
+                {{ session.best_lap_number }} - {{ session.best_lap_ms|format_ms }}
             </h5>
             <h5 class="header-message-text">
                 AVERAGE: <br>
-                {{ session.avg_lap_ms }}ms
+                {{ session.avg_lap_ms|format_ms }}
             </h5>
             <h5 class="header-message-text">
                 TBL: <br>
-                {{ session.tbl_ms }}ms
+                {{ session.tbl_ms|format_ms }}
             </h5>
         </div>
         <br>
     </div>
     <div class="body-container">
         <div class="body-left">
-            <h4>All Laps:</h4>
-            <div class="lap-num">
-                <h6>Lap:</h6>
-                {% for lap in laps %}
-                    {{ lap.lap }}<br>
-                {% endfor %}
+            <div class="body-left-title">
+                <h4>All Laps:</h4>
             </div>
-            <div class="lap-time">
-                <h6>Total Time:</h6>
-                {% for lap in laps %}
-                    {% if lap.lap == session.best_lap_number %}
-                        <div style="background-color: blueviolet;">{{ lap.total_ms }}</div>
-                    {% else %}
-                        {{ lap.total_ms }}<br>
-                    {% endif %} 
-                {% endfor %}
-            </div>
-            <div class="lap-s1">
-                <h6>S1 Time:</h6>
-                {% for lap in laps %}
-                    {{ lap.s1_ms }} <br>
-                {% endfor %}
-            </div>
-            <div class="lap-s2">
-                <h6>S2 Time:</h6>
-                {% for lap in laps %}
-                    {{ lap.s2_ms }} <br>
-                {% endfor %}
-            </div>
-            <div class="lap-s3">
-                <h6>S3 Time:</h6>
-                {% for lap in laps %}
-                    {{ lap.s3_ms }} <br>
-                {% endfor %}
+            <div class="body-left-laps">
+                <div class="lap-num">
+                    <h6>Lap:</h6>
+                    {% for lap in laps %}
+                        {{ lap.lap }}<br>
+                    {% endfor %}
+                </div>
+                <div class="lap-time">
+                    <h6>Total Time:</h6>
+                    {% for lap in laps %}
+                        {% if lap.lap == session.best_lap_number %}
+                            <div style="background-color: rgb(180, 91, 180);">{{ lap.total_ms|format_ms }}</div>
+                        {% else %}
+                            {{ lap.total_ms|format_ms }}<br>
+                        {% endif %} 
+                    {% endfor %}
+                </div>
+                <div class="lap-s1">
+                    <h6>S1 Time:</h6>
+                    {% for lap in laps %}
+                        {{ lap.s1_ms|format_ms }} <br>
+                    {% endfor %}
+                </div>
+                <div class="lap-s2">
+                    <h6>S2 Time:</h6>
+                    {% for lap in laps %}
+                        {{ lap.s2_ms|format_ms }} <br>
+                    {% endfor %}
+                </div>
+                <div class="lap-s3">
+                    <h6>S3 Time:</h6>
+                    {% for lap in laps %}
+                        {{ lap.s3_ms|format_ms }} <br>
+                    {% endfor %}
+                </div>
             </div>
         </div>
         <div class="body-separation"></div>
@@ -78,8 +84,44 @@
                     <button type="submit">Compare</button>
                 </form>
             </div>
-            <div class="lap-num">
-                {{ compare.track }}
+            <div class="body-right-laps">
+                {% if compare_laps %}
+                    <div class="lap-num">
+                        <h6>Lap:</h6>
+                        {% for lap in compare_laps %}
+                            {{ lap.lap }}<br>
+                        {% endfor %}
+                    </div>
+                    <div class="lap-time">
+                        <h6>Total Time:</h6>
+                        {% for lap in compare_laps %}
+                            {% if lap.lap == compare.best_lap_number %}
+                                <div style="background-color: rgb(180, 91, 180);">{{ lap.total_ms|format_ms }}</div>
+                            {% else %}
+                                {{ lap.total_ms|format_ms }}<br>
+                            {% endif %} 
+                        {% endfor %}
+                    </div>
+                    <div class="lap-s1">
+                        <h6>S1 Time:</h6>
+                        {% for lap in compare_laps %}
+                            {{ lap.s1_ms|format_ms }} <br>
+                        {% endfor %}
+                    </div>
+                    <div class="lap-s2">
+                        <h6>S2 Time:</h6>
+                        {% for lap in compare_laps %}
+                            {{ lap.s2_ms|format_ms }} <br>
+                        {% endfor %}
+                    </div>
+                    <div class="lap-s3">
+                        <h6>S3 Time:</h6>
+                        {% for lap in compare_laps %}
+                            {{ lap.s3_ms|format_ms }} <br>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                {% endif %}
             </div>
         </div>
     </div>
