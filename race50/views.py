@@ -256,18 +256,25 @@ def upload(request):
 def session(request, session_id):
     session = (Session.objects.get(user=request.user, id=session_id))
     laps = (Lap.objects.filter(session=session))
-    posibilities = (Session.objects.filter(user=request.user, track=session.track))
+    posibilities = (Session.objects.filter(user=request.user, track=session.track).exclude(id=session_id))
 
     if request.method == "POST":
         selected_option_id = request.POST.get("selectedOption")
         if selected_option_id:
-            print("User selected:", selected_option_id)
-        return redirect("session", session_id=session.id)
+            url = f"{reverse('session', args=[session.id])}?compare={selected_option_id}"
+            return redirect(url)
+        
+    compare = None
+    compare_id = request.GET.get("compare")
+    if compare_id:
+        compare = (Session.objects.get(user=request.user, id=compare_id))
+        compare_laps = (Lap.objects.filter(session=compare))
     
     return render(request, "race50/session.html", {
         "session": session,
         "laps": laps,
-        "posibilities": posibilities
+        "posibilities": posibilities,
+        "compare": compare
     })
 
 
