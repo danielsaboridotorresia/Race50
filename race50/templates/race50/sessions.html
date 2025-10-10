@@ -8,10 +8,13 @@
 
 {% block body %}
     <div class="container">
-        {% for session in sessions %}
-            <li>
-                {{ session.track }}: {{ session.date }}
-            </li>
-        {% endfor %}
+        <h4>All sessions:</h4>
+        <ul>
+            {% for session in sessions %}
+                <li>
+                    <a href="{% url 'session' session.id %}">{{ session.track }}: {{ session.date }}</a>
+                </li>
+            {% endfor %}
+        </ul>
     </div>
 {% endblock %}

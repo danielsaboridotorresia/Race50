@@ -1,4 +1,5 @@
 {% load static %}
+{% load race50_extras %}
 
 <!DOCTYPE html>
 
@@ -22,9 +23,9 @@
                 <div>
                     {% if user.is_authenticated %}
                         <h4>Last 5 sessions:</h4>
-                        {% if sessions %}
-                            {% for session in sessions %}
-                                <a href="{% url 'session' session.id %}">{{ session.track }} {{ session.date }} {{ session.best_lap_ms }}</a><br>
+                        {% if last_five %}
+                            {% for session in last_five %}
+                                <a href="{% url 'session' session.id %}">{{ session.track }} {{ session.date }}: {{ session.best_lap_ms|format_ms }}</a><br>
                             {% endfor %}
                             <br>
                             <a href="{% url 'sessions' %}">See more</a>

@@ -38,12 +38,12 @@ def global_context(request):
     if request.user.is_authenticated:
         last_five = Session.objects.filter(user=request.user).order_by('-created_at')[:5]
         return {
-            "sessions": last_five
+            "last_five": last_five
         }
     else:
         last_five = Session.objects.none()
         return {
-            "sessions": last_five
+            "last_five": last_five
         }
 
 
