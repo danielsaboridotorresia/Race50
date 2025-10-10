@@ -1,5 +1,6 @@
 {% extends "race50/layout.html" %}
 {% load static %}
+{% load race50_extras %}
 
 {% block title %}
     Race50 - Index
@@ -34,8 +35,8 @@
                             <p class="card-text">Your last uploaded session was at {{ session.track }} on {{ session.date }}</p>
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Best lap: {{ session.best_lap_ms }}ms</li>
-                            <li class="list-group-item">Theoretical Best Lap: {{ session.tbl_ms }}ms</li>
+                            <li class="list-group-item">Best lap: {{ session.best_lap_ms|format_ms }}</li>
+                            <li class="list-group-item">Theoretical Best Lap: {{ session.tbl_ms|format_ms }}</li>
                             <li class="list-group-item">Consistency Percent: {{ session.consistency_percent|floatformat:2 }}%</li>
                         </ul>
                         <div class="card-body">

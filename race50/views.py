@@ -232,17 +232,6 @@ def upload(request):
             )
             for r in valid_rows
         ])
-
-
-    top_laps = sorted(valid_rows, key=lambda r: r["total_ms"])[:5]
-    top_laps_pretty = [{**r, "total_str": format_ms(r["total_ms"])} for r in top_laps]
-    pretty_summary = {
-        "best_lap_str": format_ms(summary["best_lap_ms"]),
-        "avg_lap_str":  format_ms(summary["avg_lap_ms"]),
-        "tbl_str":      format_ms(summary["tbl_ms"]),
-        "consistency_str": f"{summary['consistency_percent']:.1f}%"
-    }
-
     return redirect("session", session_id=session_obj.id)
 
 
