@@ -4,10 +4,6 @@ register = template.Library()
 
 @register.filter(name="format_ms")
 def format_ms(ms):
-    """
-    Format milliseconds as M:SS.mmm
-    Safely handles None or non-ints.
-    """
     try:
         ms = int(ms)
     except (TypeError, ValueError):
