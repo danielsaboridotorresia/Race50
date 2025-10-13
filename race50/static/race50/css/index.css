@@ -43,7 +43,6 @@
 /* Index page when user is logged in */
 /* Header of the index */
 .header{
-    background-color: rgb(101, 101, 230);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -89,6 +88,8 @@
   background-size: 40px 40px; /* size of squares */
   background-position: 0 0, 0 20px, 20px -20px, -20px 0;
 }
+
+/* Card index */
 .card {
   background-color: #111827;
   border: 2px;
@@ -100,7 +101,12 @@
   color: #E6EDF3;
 }
 
-.list-group {
+.list-group-item {
   background-color: #111827; 
   color: #E6EDF3;
+}
+
+/* Images on the sides */
+.index-session-imageleft {
+  border-radius: 8px;
 }

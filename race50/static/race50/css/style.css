@@ -6,7 +6,8 @@ body {
 
 /* General Style for the page */
 .header {
-    color: #17212B;
+    background-color: #111827;
+    border-radius: 10px;
 }
 
 hr {
