@@ -73,15 +73,20 @@
         <div class="body-separation"></div>
         <div class="body-right">
             <div class="body-right-form">
-                <form action="{% url 'session' session.id %}" method="post">
-                {% csrf_token %}
-                    <label for="comparison"><h4>Comparison with:</h4></label>
-                    <select id="comparison" name="selectedOption">
-                        {% for posibility in posibilities %}
-                        <option value="{{ posibility.id }}">{{ posibility.track }}:{{ posibility.date }}</option>
-                        {% endfor %}
-                    </select>       
-                    <button type="submit">Compare</button>
+                <form action="{% url 'session' session.id %}" method="post" class="mb-0">
+                    {% csrf_token %}
+                    <label for="comparison" class="mb-2"><h4 class="mb-0">Comparison with:</h4></label>
+                    <div class="input-group input-group-sm" style="max-width: 420px;">
+                            <select id="comparison" name="selectedOption" class="custom-select" required>
+                                {% for posibility in posibilities %}
+                                    <option value="{{ posibility.id }}">{{ posibility.track }}: {{ posibility.date }}</option>
+                                {% endfor %}
+                            </select>
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-primary">Compare</button>
+                        </div>
+                    </div>
+
                 </form>
             </div>
             <div class="body-right-laps">

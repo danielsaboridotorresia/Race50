@@ -32,7 +32,7 @@ a:hover {
 /* Sidebar on the left */
 .sidebar {
     background-color: #111827;
-    height: 100vh;
+    height: auto;
     padding: 20px;
 }
 
