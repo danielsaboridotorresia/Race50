@@ -1,92 +1,97 @@
 {% extends "race50/layout.html" %}
+{% load static %}
+{% load race50_extras %}
+
 {% block title %}CSV Upload Guide — Race50{% endblock %}
 
 {% block body %}
-<div class="container py-4">
-  <h1 class="h3 mb-3">CSV Upload Guide</h1>
-  <p class="lead">How to prepare and upload karting session CSV files to Race50.</p>
+  <div class="container py-4">
+    <h1 class="h3 mb-3">CSV Upload Guide</h1>
+    <p class="lead">How to prepare and upload karting session CSV files to Race50.</p>
 
-  <hr>
-  
-  <h2 class="h5 mt-4">Where to upload</h2>
-  <p>
-    Use the upload form that posts to <code>{% url 'upload' %}</code>.<br>
-    Select your <code>.csv</code> file and submit the form.
-  </p>
+    <hr>
+    
+    <h2 class="h5 mt-4">Where to upload</h2>
+    <p>
+      Use the upload form that posts to <code>{% url 'upload' %}</code>.<br>
+      Select your <code>.csv</code> file and submit the form.
+    </p>
 
-  <h2 class="h5 mt-4">File requirements</h2>
-  <ul class="mb-3">
-    <li>Extension: <code>.csv</code></li>
-    <li>Encoding: UTF-8 (BOM accepted)</li>
-    <li>Delimiter: comma ( <code>,</code> )</li>
-    <li>Maximum size: 10 MB</li>
-    <li>Sanity: no NUL bytes in the first few KB</li>
-  </ul>
+    <h2 class="h5 mt-4">File requirements</h2>
+    <ul class="mb-3">
+      <li>Extension: <code>.csv</code></li>
+      <li>Encoding: UTF-8 (BOM accepted)</li>
+      <li>Delimiter: comma ( <code>,</code> )</li>
+      <li>Maximum size: 10 MB</li>
+      <li>Sanity: no NUL bytes in the first few KB</li>
+    </ul>
 
-  <h2 class="h5 mt-4">Required CSV header</h2>
-  <p>The file must contain exactly these column names (order does not matter):</p>
-  <p class="mb-2">
-    <code>SessionID</code>,
-    <code>Track</code>,
-    <code>Date</code>,
-    <code>Lap</code>,
-    <code>LapTime_ms</code>,
-    <code>S1_ms</code>,
-    <code>S2_ms</code>,
-    <code>S3_ms</code>,
-    <code>Notes</code>
-  </p>
-  <p>No aliases are accepted. Names must match exactly.</p>
+    <h2 class="h5 mt-4">Required CSV header</h2>
+    <p>The file must contain exactly these column names (order does not matter):</p>
+    <p class="mb-2">
+      <code>SessionID</code>,
+      <code>Track</code>,
+      <code>Date</code>,
+      <code>Lap</code>,
+      <code>LapTime_ms</code>,
+      <code>S1_ms</code>,
+      <code>S2_ms</code>,
+      <code>S3_ms</code>,
+      <code>Notes</code>
+    </p>
+    <p>No aliases are accepted. Names must match exactly.</p>
 
-  <h2 class="h5 mt-4">Per-row data rules</h2>
-  <ul class="mb-3">
-    <li><code>Lap</code>, <code>LapTime_ms</code>, <code>S1_ms</code>, <code>S2_ms</code>, <code>S3_ms</code> must be positive integers.</li>
-    <li><code>Date</code> must be a valid date (e.g., <code>YYYY-MM-DD</code>).</li>
-    <li>All three sector columns are required on every row.</li>
-    <li>Sector sum tolerance: <code>S1_ms + S2_ms + S3_ms</code> should match <code>LapTime_ms</code> within ±5 ms.</li>
-    <li><code>Notes</code> is free text (can be empty).</li>
-  </ul>
+    <h2 class="h5 mt-4">Per-row data rules</h2>
+    <ul class="mb-3">
+      <li><code>Lap</code>, <code>LapTime_ms</code>, <code>S1_ms</code>, <code>S2_ms</code>, <code>S3_ms</code> must be positive integers.</li>
+      <li><code>Date</code> must be a valid date (e.g., <code>YYYY-MM-DD</code>).</li>
+      <li>All three sector columns are required on every row.</li>
+      <li>Sector sum tolerance: <code>S1_ms + S2_ms + S3_ms</code> should match <code>LapTime_ms</code> within ±5 ms.</li>
+      <li><code>Notes</code> is free text (can be empty).</li>
+    </ul>
 
-  <h2 class="h5 mt-4">How invalid data is handled</h2>
-  <ul class="mb-3">
-    <li>General invalid rows (bad integers, bad dates, missing required values) are <strong>skipped</strong>. The upload continues.</li>
-    <li>Duplicate <code>Lap</code> numbers within the same file for the same session are a <strong>hard error</strong> and will fail the upload.</li>
-    <li>No global min/max lap time bounds and no max rows limit are enforced.</li>
-  </ul>
+    <h2 class="h5 mt-4">How invalid data is handled</h2>
+    <ul class="mb-3">
+      <li>General invalid rows (bad integers, bad dates, missing required values) are <strong>skipped</strong>. The upload continues.</li>
+      <li>Duplicate <code>Lap</code> numbers within the same file for the same session are a <strong>hard error</strong> and will fail the upload.</li>
+      <li>No global min/max lap time bounds and no max rows limit are enforced.</li>
+    </ul>
 
-  <h2 class="h5 mt-4">What the app creates</h2>
-  <p>Each upload creates a <code>Session</code> and multiple <code>Lap</code> records:</p>
-  <ul class="mb-3">
-    <li><strong>Session</strong> fields populated: <code>user</code>, <code>external_id</code>, <code>track</code>, <code>date</code>, <code>laps_count</code>, <code>best_lap_ms</code>, <code>best_lap_number</code>, <code>worst_lap_ms</code>, <code>avg_lap_ms</code>, <code>tbl_ms</code>, <code>consistency_percent</code>, <code>notes</code>, <code>created_at</code>.</li>
-    <li><strong>Lap</strong> fields populated: <code>session</code>, <code>lap</code>, <code>s1_ms</code>, <code>s2_ms</code>, <code>s3_ms</code>, <code>total_ms</code>, <code>notes</code>.<br>
-      Uniqueness: each (<code>session</code>, <code>lap</code>) pair is unique.</li>
-  </ul>
+    <h2 class="h5 mt-4">What the app creates</h2>
+    <p>Each upload creates a <code>Session</code> and multiple <code>Lap</code> records:</p>
+    <ul class="mb-3">
+      <li><strong>Session</strong> fields populated: <code>user</code>, <code>external_id</code>, <code>track</code>, <code>date</code>, <code>laps_count</code>, <code>best_lap_ms</code>, <code>best_lap_number</code>, <code>worst_lap_ms</code>, <code>avg_lap_ms</code>, <code>tbl_ms</code>, <code>consistency_percent</code>, <code>notes</code>, <code>created_at</code>.</li>
+      <li><strong>Lap</strong> fields populated: <code>session</code>, <code>lap</code>, <code>s1_ms</code>, <code>s2_ms</code>, <code>s3_ms</code>, <code>total_ms</code>, <code>notes</code>.<br>
+        Uniqueness: each (<code>session</code>, <code>lap</code>) pair is unique.</li>
+    </ul>
 
-  <h2 class="h5 mt-4">How aggregates are computed</h2>
-  <ul class="mb-3">
-    <li><strong>laps_count</strong>: number of valid rows imported.</li>
-    <li><strong>best_lap_ms</strong> / <strong>worst_lap_ms</strong>: min/max of <code>LapTime_ms</code> across valid rows.</li>
-    <li><strong>avg_lap_ms</strong>: integer average of <code>LapTime_ms</code> across valid rows.</li>
-    <li><strong>best_lap_number</strong>: lap number of the minimum <code>LapTime_ms</code>. Ties break by the smallest <code>Lap</code> value.</li>
-    <li><strong>tbl_ms</strong> (theoretical best): <code>min(S1_ms) + min(S2_ms) + min(S3_ms)</code> using all valid rows.</li>
-    <li><strong>consistency_percent</strong>: this must be provided by the app’s logic at upload time (e.g., set a placeholder like <code>0.0</code> if you haven’t implemented the formula yet).</li>
-  </ul>
+    <h2 class="h5 mt-4">How aggregates are computed</h2>
+    <ul class="mb-3">
+      <li><strong>laps_count</strong>: number of valid rows imported.</li>
+      <li><strong>best_lap_ms</strong> / <strong>worst_lap_ms</strong>: min/max of <code>LapTime_ms</code> across valid rows.</li>
+      <li><strong>avg_lap_ms</strong>: integer average of <code>LapTime_ms</code> across valid rows.</li>
+      <li><strong>best_lap_number</strong>: lap number of the minimum <code>LapTime_ms</code>. Ties break by the smallest <code>Lap</code> value.</li>
+      <li><strong>tbl_ms</strong> (theoretical best): <code>min(S1_ms) + min(S2_ms) + min(S3_ms)</code> using all valid rows.</li>
+      <li><strong>consistency_percent</strong>: this must be provided by the app’s logic at upload time (e.g., set a placeholder like <code>0.0</code> if you haven’t implemented the formula yet).</li>
+    </ul>
 
-  <h2 class="h5 mt-4">Duplicates policy</h2>
-  <ul class="mb-3">
-    <li><strong>Within file:</strong> duplicate <code>Lap</code> numbers → fail the upload.</li>
-    <li><strong>Across sessions:</strong> the database does <em>not</em> enforce uniqueness on <code>external_id</code> for <code>Session</code>. If you upload a CSV with an <code>external_id</code> seen before, a <strong>new</strong> session is created.</li>
-  </ul>
+    <h2 class="h5 mt-4">Duplicates policy</h2>
+    <ul class="mb-3">
+      <li><strong>Within file:</strong> duplicate <code>Lap</code> numbers → fail the upload.</li>
+      <li><strong>Across sessions:</strong> the database does <em>not</em> enforce uniqueness on <code>external_id</code> for <code>Session</code>. If you upload a CSV with an <code>external_id</code> seen before, a <strong>new</strong> session is created.</li>
+    </ul>
 
-  <h2 class="h5 mt-4">Quick checklist before you upload</h2>
-  <ul class="mb-3">
-    <li>File is <code>.csv</code>, UTF-8, comma-delimited, &lt;= 10 MB.</li>
-    <li>Header names exactly match the required list.</li>
-    <li>Every row has all three sector values and a valid total lap time.</li>
-    <li>Sector sums agree with the lap time within ±5 ms.</li>
-    <li>No duplicate lap numbers in the file.</li>
-  </ul>
+    <h2 class="h5 mt-4">Quick checklist before you upload</h2>
+    <ul class="mb-3">
+      <li>File is <code>.csv</code>, UTF-8, comma-delimited, &lt;= 10 MB.</li>
+      <li>Header names exactly match the required list.</li>
+      <li>Every row has all three sector values and a valid total lap time.</li>
+      <li>Sector sums agree with the lap time within ±5 ms.</li>
+      <li>No duplicate lap numbers in the file.</li>
+    </ul>
 
-  <p class="text-muted small mb-0">Last updated: 11 Oct 2025</p>
-</div>
+    <p class="text-muted small mb-0">Last updated: 11 Oct 2025</p>
+  </div>
+  {% load static %}
+          <link rel="stylesheet" href="{% static 'race50/css/guide.css' %}">
 {% endblock %}
