@@ -1,6 +1,5 @@
 /* Header of the upload */
 .header{
-    background-color: rgb(101, 101, 230);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,6 +12,11 @@
 .header-buttons {
   display: flex;
   gap: 200px;
+}
+
+/* Alert on headeer */
+.alert > P {
+  color: #0C1117;
 }
 
 /* Dropzone base */
