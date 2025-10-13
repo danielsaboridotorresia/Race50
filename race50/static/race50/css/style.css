@@ -1,13 +1,36 @@
 /* Body general structure */
 body {
     margin: 0;
-    background-color: white;
+    background-color: #0C1117;
 }
 
+/* General Style for the page */
+.header {
+    color: #17212B;
+}
+
+hr {
+    background-color: #E6EDF3;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    color: #E6EDF3;
+}
+
+#text{
+    color: #E6EDF3;
+}
+
+a {
+    color: #7C3AED;
+}
+a:hover {
+    color: #6D28D9
+}
 
 /* Sidebar on the left */
 .sidebar {
-    background-color: #f0f0f0;
+    background-color: #111827;
     height: 100vh;
     padding: 20px;
 }
@@ -34,7 +57,7 @@ body {
 
 /* Navigation bar on the top of the screen */
 .navbar {
-    background-color: #f0f0f0;
+    background-color: #111827;
     box-sizing: border-box;
 }
 ul, li {

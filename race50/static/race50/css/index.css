@@ -34,6 +34,7 @@
     height: 280px;
 }
 .index-images {
+  border-radius: 10px;
     height: 260px;
     width: auto;
 }
@@ -81,13 +82,25 @@
   border-radius: 8px;
 
   background-image:
-    linear-gradient(45deg, #000 25%, transparent 25%),
-    linear-gradient(-45deg, #000 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, #000 75%),
-    linear-gradient(-45deg, transparent 75%, #000 75%);
+    linear-gradient(45deg, #FFFF 25%, transparent 25%),
+    linear-gradient(-45deg, #FFFF 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #FFFF 75%),
+    linear-gradient(-45deg, transparent 75%, #FFFF 75%);
   background-size: 40px 40px; /* size of squares */
   background-position: 0 0, 0 20px, 20px -20px, -20px 0;
 }
 .card {
+  background-color: #111827;
+  border: 2px;
+  border-color: #233042;
   flex: 1;
+}
+
+.card-body {
+  color: #E6EDF3;
+}
+
+.list-group {
+  background-color: #111827; 
+  color: #E6EDF3;
 }
